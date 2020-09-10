@@ -31,8 +31,4 @@ public class InvoiceService {
         return invoiceEntityCreated;
     }
 
-    public InvoiceEntity update(Integer id, InvoiceEntity invoiceEntity) {
-        return null;
-    }
-
 }

@@ -4,23 +4,23 @@ import com.belajar.mocking.entity.InvoiceItemEntity;
 import com.belajar.mocking.repository.InvoiceItemRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest
 class InvoiceItemServiceTest {
 
-    @Autowired
-    InvoiceItemService itemService;
+    @InjectMocks
+    InvoiceItemService invoiceItemService;
 
-    @MockBean
+    @Mock
     InvoiceItemRepository invoiceItemRepository;
 
     Integer id = 1;
     Integer invoiceId = 1;
-    String itemName = "Samsung Galaxy A50s";
+    String itemName = "litter box";
     Integer pricePcs = 10000;
     Integer qty = 10;
     Integer priceTotal = 100000;
@@ -38,6 +38,7 @@ class InvoiceItemServiceTest {
         itemExpected.setQty(qty);
         itemExpected.setPriceTotal(priceTotal);
 
+        //Data Input
         InvoiceItemEntity itemEntity = new InvoiceItemEntity();
         itemEntity.setId(id);
         itemEntity.setIdInvoice(invoiceId);
@@ -48,7 +49,7 @@ class InvoiceItemServiceTest {
 
         Mockito.when(invoiceItemRepository.save(Mockito.any(InvoiceItemEntity.class))).thenReturn(itemExpected);
 
-        InvoiceItemEntity actual = itemService.save(itemEntity);
+        InvoiceItemEntity actual = invoiceItemService.save(itemEntity);
 
         Assertions.assertEquals(actual.getId(), itemExpected.getId());
         Assertions.assertEquals(actual.getIdInvoice(), itemExpected.getIdInvoice());
@@ -81,7 +82,7 @@ class InvoiceItemServiceTest {
         Mockito.when(invoiceItemRepository.findById(Mockito.anyInt())).thenReturn(itemExpected);
         Mockito.when(invoiceItemRepository.save(Mockito.any(InvoiceItemEntity.class))).thenReturn(itemExpected);
 
-        InvoiceItemEntity actual = itemService.update(id, itemEntity);
+        InvoiceItemEntity actual = invoiceItemService.update(id, itemEntity);
 
         Assertions.assertEquals(actual.getId(), itemExpected.getId());
         Assertions.assertEquals(actual.getIdInvoice(), itemExpected.getIdInvoice());

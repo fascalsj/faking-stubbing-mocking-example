@@ -66,6 +66,7 @@ class InvoiceServiceTest {
         invoiceEntity.setInvoiceItemList(invoiceItemEntities);
         invoiceEntity.setDiscountPercentage(20);
         invoiceEntity.setTotalAmount(36000);
+
         InvoiceEntity actual = invoiceService.create(invoiceEntity);
 
         Assertions.assertEquals(actual.getDiscountPercentage(), actual.getDiscountPercentage());

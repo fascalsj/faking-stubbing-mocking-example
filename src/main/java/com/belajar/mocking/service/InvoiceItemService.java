@@ -24,11 +24,4 @@ public class InvoiceItemService {
         itemEntity.setId(id);
         return save(itemEntity);
     }
-
-    public InvoiceItemEntity updateByItemIdAndInvoiceId(Integer id, InvoiceItemEntity itemEntity) {
-        Assert.notNull(itemRepository.findById(id), "Item Invoice Not Found");
-        itemEntity.setId(id);
-        return save(itemEntity);
-    }
-
 }
